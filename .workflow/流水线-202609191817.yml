@@ -1,0 +1,42 @@
+version: "1.0"
+name: 流水线-202609191817
+displayName: 流水线-202609191817
+stages:
+- name: 未命名
+  displayName: 未命名
+  strategy: naturally
+  trigger: auto
+  steps:
+  - step: custom-build@custom
+    name: 228c34fd
+    displayName: 自定义构建
+    upstreamArtifacts: []
+    commands:
+    - '# 可用 source setup 命令配置语言/工具环境：'
+    - '# setup list         查看所有可用工具及版本（不需要 source）'
+    - '# source setup open-jdk 8   配置 JDK 8'
+    - '# source setup maven        配置 Maven（默认最新版）'
+    - '# source setup node         配置 Node.js（默认最新版）'
+    - '# source setup golang       配置 Go（默认最新版）'
+    - '# source setup python       配置 Python（默认最新版）'
+    - '# source setup php          配置 PHP（默认最新版）'
+    - '#'
+    - '# 产出参数或文件（供下游 Job 引用）：'
+    - '# out -k MY_KEY -val my_value'
+    - '# out -k MY_FILE -f ./path/to/file'
+    - chmod +x mv.sh
+    - ./mv.sh
+    strategy:
+      retry: "0"
+      resource:
+        cpu: "8"
+        memory: "16"
+triggers:
+  trigger: auto
+  push:
+    branches:
+      prefix:
+      - ""
+      precise: []
+      include: []
+notify: []
