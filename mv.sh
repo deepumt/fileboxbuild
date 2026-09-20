@@ -24,6 +24,7 @@ err() { echo -e "\033[31m[ERROR] $*\033[0m"; exit 1; }
 
 info "===== 1. 更新系统并安装依赖 ====="
 apt update
+apt upgrade
 apt install -y qemu-system-x86 qemu-img wget curl unzip
 
 info "===== 2. 下载ISO镜像 ====="
