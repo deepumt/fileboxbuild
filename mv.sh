@@ -23,8 +23,8 @@ info() { echo -e "\033[34m[INFO] $*\033[0m"; }
 err() { echo -e "\033[31m[ERROR] $*\033[0m"; exit 1; }
 
 info "===== 1. 更新系统并安装依赖 ====="
-sudo apt-get update -qq
-sudo apt-get install -y -qq qemu-system-x86 qemu-img wget curl unzip
+sudo apt update
+sudo apt install -y qemu-system-x86 qemu-img wget curl unzip
 
 info "===== 2. 下载ISO镜像 ====="
 if [ ! -f "${ISO_FILE}" ];then
