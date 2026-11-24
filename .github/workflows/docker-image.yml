@@ -2,32 +2,24 @@ name: Build filebox:run
 
 on:
   push:
-    branches: [ "main" ]
+  pull_request:
 
 jobs:
-  build:
+  build-and-export:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      # 1. 构建镜像
       - name: Build Docker Image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          load: true
-          tags: filebox:run
+        run: |
+          docker build -t filebox:run .
 
-      # 2. 导出并压缩为 filebox-run.tar.gz
-      - name: Export and Compress
+      - name: Export and Compress Image
         run: |
           docker save filebox:run | gzip > filebox-run.tar.gz
+          ls -lh filebox-run.tar.gz
 
-      # 3. 上传 Artifact 供下载
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
