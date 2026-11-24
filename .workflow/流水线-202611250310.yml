@@ -1,0 +1,56 @@
+version: "1.0"
+name: 流水线-202611250310
+displayName: 流水线-202611250310
+stages:
+- name: 未命名
+  displayName: 未命名
+  strategy: naturally
+  trigger: auto
+  steps:
+  - step: build@docker
+    name: 77187a55-5ef7-4f91-a58f-9150ccdbbeb3
+    displayName: 镜像构建
+    type: account
+    repository: hub.docker.com
+    username: zxc72
+    password: zxcvA@11
+    tag: "${GITEE_PIPELINE_BUILD_NUMBER}"
+    dockerfile: ./Dockerfile
+    context: ""
+    artifacts: []
+    isCache: true
+    processorType:
+    - amd64
+    strategy:
+      retry: "0"
+      resource:
+        cpu: "4"
+        memory: "8"
+  - step: build@docker
+    name: 5da8acb7-0d1b-4df4-9331-9e4b3f68416a
+    displayName: 镜像构建
+    type: account
+    repository: hub.docker.com
+    username: zxc72
+    password: zxcvA@11
+    tag: "${GITEE_PIPELINE_BUILD_NUMBER}"
+    dockerfile: ./Dockerfile
+    context: ""
+    artifacts: []
+    isCache: false
+    processorType:
+    - amd64
+    strategy:
+      retry: "0"
+      resource:
+        cpu: "4"
+        memory: "8"
+triggers:
+  trigger: auto
+  push:
+    branches:
+      prefix:
+      - ""
+      precise: []
+      include: []
+notify: []
