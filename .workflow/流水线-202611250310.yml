@@ -9,9 +9,9 @@ stages:
   steps:
   - step: build@docker
     name: 77187a55-5ef7-4f91-a58f-9150ccdbbeb3
-    displayName: 镜像构建
+    displayName: filebox-build
     type: account
-    repository: hub.docker.com
+    repository: docker.io
     username: zxc72
     password: zxcvA@11
     tag: "${GITEE_PIPELINE_BUILD_NUMBER}"
